@@ -21,7 +21,9 @@ const infectionsByRequestedTime = (currentlyInfected, period, time) => {
 
 const severeCasesByRequestedTime = (time) => (15 / 100) * time;
 
-const hospitalBedsTime = (time, beds) => Math.trunc((35 / 100) * beds) - time;
+const hospitalBedsTime = (time, beds) => Math.trunc((35 / 100) * beds - time);
+
+const casesByTime = (perct, time) => (perct / 100) * time;
 
 const covid19ImpactEstimator = (data) => {
   const {
@@ -62,19 +64,40 @@ const covid19ImpactEstimator = (data) => {
     totalHospitalBeds
   );
 
+  const impactCasesForICUByRequestedTime = casesByTime(
+    5,
+    impactInfectionsByRequestedTime
+  );
+  const severeCasesForICUByRequestedTime = casesByTime(
+    5,
+    severeImpactInfectionsByRequestedTime
+  );
+  const impactCasesForVentByRequestedTime = casesByTime(
+    2,
+    impactInfectionsByRequestedTime
+  );
+  const severeCasesForVentByRequestedTime = casesByTime(
+    2,
+    severeImpactInfectionsByRequestedTime
+  );
+
   return {
     data, // the input data you got
     impact: {
       currentlyInfected: impactCurrentlyInfected,
       infectionsByRequestedTime: impactInfectionsByRequestedTime,
       severeCasesByRequestedTime: impactSevereCasesByRequestedTime,
-      hospitalBedsByRequestedTime: impactHospitalBedsByRequestedTime
+      hospitalBedsByRequestedTime: impactHospitalBedsByRequestedTime,
+      casesForICUByRequestedTime: impactCasesForICUByRequestedTime,
+      casesForVentilatorsByRequestedTime: impactCasesForVentByRequestedTime
     }, // your best case estimation
     severeImpact: {
       currentlyInfected: severeImpactCurrentlyInfected,
       infectionsByRequestedTime: severeImpactInfectionsByRequestedTime,
       severeCasesByRequestedTime: severeImpactSevereCasesByRequestedTime,
-      hospitalBedsByRequestedTime: severeImpactHospitalBedsByRequestedTime
+      hospitalBedsByRequestedTime: severeImpactHospitalBedsByRequestedTime,
+      casesForICUByRequestedTime: severeCasesForICUByRequestedTime,
+      casesForVentilatorsByRequestedTime: severeCasesForVentByRequestedTime
     } // your severe case estimation
   };
 };
