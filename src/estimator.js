@@ -15,13 +15,13 @@ const convertToDays = (period, time) => {
 // Function to get Infections by requested time
 const infectionsByRequestedTime = (currentlyInfected, period, time) => {
   const days = convertToDays(period, time);
-  const factor = Math.floor(days / 3);
+  const factor = Math.trunc(days / 3);
   return currentlyInfected * 2 ** factor;
 };
 
 const severeCasesByRequestedTime = (time) => (15 / 100) * time;
 
-const hospitalBedsTime = (time, beds) => Math.floor((35 / 100) * beds) - time;
+const hospitalBedsTime = (time, beds) => Math.trunc((35 / 100) * beds) - time;
 
 const covid19ImpactEstimator = (data) => {
   const {
