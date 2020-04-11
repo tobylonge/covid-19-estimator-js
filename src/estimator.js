@@ -3,13 +3,10 @@ const convertToDays = (period, time) => {
   switch (period) {
     case 'days':
       return time;
-      break;
     case 'weeks':
       return time * 7;
-      break;
     case 'months':
       return time * 30;
-      break;
     default:
       return time;
   }
