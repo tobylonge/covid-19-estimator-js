@@ -19,30 +19,62 @@ const infectionsByRequestedTime = (currentlyInfected, period, time) => {
   return currentlyInfected * 2 ** factor;
 };
 
+const severeCasesByRequestedTime = (time) => (15 / 100) * time;
+
+const hospitalBedsTime = (time, beds) => Math.floor((35 / 100) * beds) - time;
+
 const covid19ImpactEstimator = (data) => {
-  const { periodType, timeToElapse, reportedCases } = data;
+  const {
+    periodType, timeToElapse, reportedCases, totalHospitalBeds
+  } = data;
 
   // Currently Infected People
   const impactCurrentlyInfected = reportedCases * 10;
-  const severeCurrentlyInfected = reportedCases * 50;
+
+  const severeImpactCurrentlyInfected = reportedCases * 50;
+
+  const impactInfectionsByRequestedTime = infectionsByRequestedTime(
+    impactCurrentlyInfected,
+    periodType,
+    timeToElapse
+  );
+
+  const severeImpactInfectionsByRequestedTime = infectionsByRequestedTime(
+    severeImpactCurrentlyInfected,
+    periodType,
+    timeToElapse
+  );
+
+  const impactSevereCasesByRequestedTime = severeCasesByRequestedTime(
+    impactInfectionsByRequestedTime
+  );
+
+  const severeImpactSevereCasesByRequestedTime = severeCasesByRequestedTime(
+    severeImpactInfectionsByRequestedTime
+  );
+
+  const impactHospitalBedsByRequestedTime = hospitalBedsTime(
+    impactSevereCasesByRequestedTime,
+    totalHospitalBeds
+  );
+  const severeImpactHospitalBedsByRequestedTime = hospitalBedsTime(
+    severeImpactSevereCasesByRequestedTime,
+    totalHospitalBeds
+  );
 
   return {
     data, // the input data you got
     impact: {
       currentlyInfected: impactCurrentlyInfected,
-      infectionsByRequestedTime: infectionsByRequestedTime(
-        impactCurrentlyInfected,
-        periodType,
-        timeToElapse
-      )
+      infectionsByRequestedTime: impactInfectionsByRequestedTime,
+      severeCasesByRequestedTime: impactSevereCasesByRequestedTime,
+      hospitalBedsByRequestedTime: impactHospitalBedsByRequestedTime
     }, // your best case estimation
     severeImpact: {
-      currentlyInfected: severeCurrentlyInfected,
-      infectionsByRequestedTime: infectionsByRequestedTime(
-        severeCurrentlyInfected,
-        periodType,
-        timeToElapse
-      )
+      currentlyInfected: severeImpactCurrentlyInfected,
+      infectionsByRequestedTime: severeImpactInfectionsByRequestedTime,
+      severeCasesByRequestedTime: severeImpactSevereCasesByRequestedTime,
+      hospitalBedsByRequestedTime: severeImpactHospitalBedsByRequestedTime
     } // your severe case estimation
   };
 };
