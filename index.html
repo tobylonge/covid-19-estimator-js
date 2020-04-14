@@ -25,7 +25,7 @@
       rel="stylesheet"
       async
     />
-    <link rel="stylesheet" href="style.min.css" />
+    <link rel="stylesheet" href="style.min.css" async />
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -52,7 +52,8 @@
             <input
               class="form-input"
               id="population"
-              type="text"
+              type="number"
+              maxlength="100"
               required
               data-population
             />
@@ -63,10 +64,11 @@
           <div class="group -material">
             <input
               class="form-input"
-              type="text"
+              type="number"
               required
               data-time-to-elapse
               id="projection-time"
+              maxlength="100"
             />
 
             <label class="title" for="projection-time"
@@ -77,10 +79,11 @@
           <div class="group -material">
             <input
               class="form-input"
-              type="text"
+              type="number"
               required
               data-reported-cases
               id="reported-cases"
+              maxlength="100"
             />
 
             <label class="title" for="reported-cases">Reported Cases</label>
@@ -89,10 +92,11 @@
           <div class="group -material">
             <input
               class="form-input"
-              type="text"
+              type="number"
               required
               data-total-hospital-beds
               id="hospital-bed"
+              maxlength="100"
             />
 
             <label class="title" for="hospital-bed">Total Hospital Beds</label>
@@ -118,7 +122,5 @@
         </div>
       </div>
     </div>
-
-    <script src="" async defer></script>
   </body>
 </html>
