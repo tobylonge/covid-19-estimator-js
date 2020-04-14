@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>COVID-19 Estimator</title>
+    <meta
+      name="description"
+      content="Covid-19 Impact Estimator, A novelty COVID-19 infections estimator helping you, society and
+    leaders prepare for the real rig problem of COVID-19, which impacts
+    on lives, health systems, and the economy"
+    />
+    <meta
+      name="keywords"
+      content="COVID-19,Corona,Virus,COVID, Estimator, COVID-19 Estimator"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="preconnect"
+    />
+    <link rel="stylesheet" href="style.min.css" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="title">
+          <h1>Covid-19 Impact Estimator</h1>
+          <p>
+            A novelty COVID-19 infections estimator helping you, society and
+            leaders prepare for the real problem of COVID-19, which impacts on
+            lives, health systems, and the economy
+          </p>
+        </div>
+        <div class="form-wrapper card">
+          <h2>Fill information below to get estimated data</h2>
+
+          <div class="group -material">
+            <input
+              class="form-input"
+              id="population"
+              type="number"
+              maxlength="100"
+              required
+              data-population
+            />
+
+            <label class="title" for="population">Population</label>
+          </div>
+
+          <div class="group -material">
+            <input
+              class="form-input"
+              type="number"
+              required
+              data-time-to-elapse
+              id="projection-time"
+              maxlength="100"
+            />
+
+            <label class="title" for="projection-time"
+              >Requested Projection Time</label
+            >
+          </div>
+
+          <div class="group -material">
+            <input
+              class="form-input"
+              type="number"
+              required
+              data-reported-cases
+              id="reported-cases"
+              maxlength="100"
+            />
+
+            <label class="title" for="reported-cases">Reported Cases</label>
+          </div>
+
+          <div class="group -material">
+            <input
+              class="form-input"
+              type="number"
+              required
+              data-total-hospital-beds
+              id="hospital-bed"
+              maxlength="100"
+            />
+
+            <label class="title" for="hospital-bed">Total Hospital Beds</label>
+          </div>
+
+          <div class="group -material">
+            <select
+              class="form-input"
+              required
+              data-period-type
+              id="period-type"
+            >
+              <option>Days</option>
+              <option>Weeks</option>
+              <option>Months</option>
+            </select>
+
+            <label class="title" for="period-type">Select Period Type</label>
+          </div>
+          <div class="btn-wrapper">
+            <button class="primary" data-go-estimate>Estimate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
